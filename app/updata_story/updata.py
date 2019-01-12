@@ -119,8 +119,8 @@ for key in list:
     chapter_list = chapter_soup.find_all('dd')
 
     check_num = 5
-    chapter_list = chapter_list[6+len(lists):]
-    for key in chapter_list:
+    chapter_list = chapter_list[6:]
+    for key in chapter_list[len(lists):]:
         print key.string
         chapter_name = key.string
         chapter_url = key.find('a')['href']
