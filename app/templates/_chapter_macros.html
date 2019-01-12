@@ -1,0 +1,32 @@
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/app.css')}}">
+
+{% macro pagination_widget(pagination, endpoint) %}
+
+    <ul class="c-post-list">
+
+
+
+
+                <div class="section">
+
+
+                    {% for p in pagination.iter_pages() %}
+                        {% if p %}
+                            {% if p == pagination.page %}
+                                    <a href="{{ url_for(endpoint, page = p, **kwargs) }}"> {{ 100*(p-1) + 1 }} - {{ 100*p }} </a>
+                            {% else %}
+                                    <a href="{{ url_for(endpoint, page = p, **kwargs) }}">{{ 100*(p-1) + 1 }} - {{ 100*p }}</a>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+{#                    <a href="javascript:;">1-100</a>#}
+
+
+                </div>
+
+
+    </ul>
+
+
+{% endmacro %}

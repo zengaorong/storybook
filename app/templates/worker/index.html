@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>Smart - UI Elements</title>
+
+		<!-- Bootstrap -->
+		<link href="{{url_for('static', filename='worker/css/bootstrap.css')}}" rel="stylesheet">
+		<link href="{{url_for('static', filename='worker/css/font-awesome.css')}}" rel="stylesheet">
+		<link href="{{url_for('static', filename='worker/css/style.css')}}" rel="stylesheet">
+
+	</head>
+	<body>
+    <div class="container">
+        <div class="smart-body">
+            <P>您好 {{ worker.workername }}</P>
+        <!-- colors -->
+        <div class="row">
+            <div class="col-xs-3">
+                <a href="/myflask/worker/logbook_today?id={{ worker.id }}" class="btn btn-block btn-lg btn-success">日志添加</a>
+            </div>
+            <div class="col-xs-3">
+                <a href="/myflask/worker/loglist?id={{ worker.id }}" class="btn  btn-block btn-lg btn-warning">个人日志查询</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+	</body>
+</html>

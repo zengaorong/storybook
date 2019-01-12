@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset="utf-8">
+<title>Flask JQuery</title>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/app.css')}}">
+</head>
+
+<body>
+
+<div id="wrapper" class='big'></div>
+
+<script type=text/javascript>
+    var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+</script>
+
+
+
+<div id="main" class="load-transition">
+
+    <div id="cartoon-book-posts" class="grid-wp">
+        <div class="grid-12">
+            <div class="active">
+
+                <ul class="newest">
+                    <li> 漫画：{{ manhua.mhname }} </li>
+                </ul>
+
+                {% if pagination %}
+                    <div class="pagination">
+                        {{ chapter_macros.pagination_widget(pagination, '.mhchapter',mh_id=manhua.id) }}
+                    </div>
+                {% endif %}
+
+
+                <ul class="c-post-list">
+                    {% for post in posts %}
+                        <li> <a class="post" target="_blank" title="{{ post.chapter_name }}" href="/myflask/manhua/addpic/{{ post.id }}"> <span class="number"></span> <span>
+                        {{ post.chapter_name }}</span> </a> </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

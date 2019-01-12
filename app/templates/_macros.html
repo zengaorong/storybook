@@ -1,0 +1,47 @@
+<link href="{{url_for('static', filename='backcontrol/css/haiersoft.css')}}" rel="stylesheet" type="text/css" media="screen,print" />
+<link href="{{url_for('static', filename='backcontrol/css/print.css')}}" rel="stylesheet" type="text/css"  media="print" />
+
+{% macro pagination_widget(pagination, endpoint) %}
+
+    {#        <ul id="PageNum">#}
+    {#            <li><a href="#">首页</a></li>#}
+    {#            <li><a href="#">上一页</a></li>#}
+    {#            <li><a href="#">1</a></li>#}
+    {#            <li><a href="#">2</a></li>#}
+    {#            <li><a href="#">3</a></li>#}
+    {#            <li><a href="#">4</a></li>#}
+    {#            <li><a href="#">5</a></li>#}
+    {#            <li><a href="#">6</a></li>#}
+    {#            <li><a href="#">下一页</a></li>#}
+    {#            <li><a href="#">尾页</a></li>#}
+    {#        </ul>#}
+
+
+<ul class="pagination" id="PageNum">
+    <li{% if not pagination.has_prev %} class="disabled"{% endif %}>
+        <a href="{% if pagination.has_prev %}{{ url_for(endpoint, page=pagination.prev_num, **kwargs) }}{% else %}#{% endif %}">
+            上一页
+        </a>
+    </li>
+    {% for p in pagination.iter_pages() %}
+        {% if p %}
+            {% if p == pagination.page %}
+            <li class="active">
+                <a href="{{ url_for(endpoint, page = p, **kwargs) }}">{{ p }}</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{{ url_for(endpoint, page = p, **kwargs) }}">{{ p }}</a>
+            </li>
+            {% endif %}
+        {% else %}
+        <li class="disabled"><a href="#">&hellip;</a></li>
+        {% endif %}
+    {% endfor %}
+    <li{% if not pagination.has_next %} class="disabled"{% endif %}>
+        <a href="{% if pagination.has_next %}{{ url_for(endpoint, page=pagination.next_num, **kwargs) }}{% else %}#{% endif %}">
+            下一页
+        </a>
+    </li>
+</ul>
+{% endmacro %}

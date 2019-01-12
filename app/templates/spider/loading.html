@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajax Loading Demo</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+    </style>
+    <script src="{{url_for('static', filename='jquery-3.2.1/jquery-3.2.1.js')}}"></script>
+    <script src="{{url_for('static', filename='layer/layer.js')}}"></script>
+    <script>
+        // ;!function(){
+        //     layer.config({//加载扩展模块
+        //         extend: 'extend/layer.ext.js'
+        //     });
+        //     layer.ready(function(){
+        //     });
+        // }();
+        function ityzl_SHOW_LOAD_LAYER(){
+            return layer.msg('努力中...', {icon: 16,shade: [0.5, '#f5f5f5'],scrollbar: false,offset: '0px', time:1000000}) ;
+        }
+        function ityzl_CLOSE_LOAD_LAYER(index){
+            layer.close(index);
+        }
+        function ityzl_SHOW_TIP_LAYER(){
+            layer.msg('恭喜您，加载完成！',{time: 1000,offset: '10px'});
+        }
+    </script>
+    <script>
+        $(function(){
+            $("#btnRequest").bind("click", function () {
+                // var i ;
+                // $.ajax({
+                //     type: "POST",
+                //     dataType: "text",
+                //     url: "ajax/index",
+                //     beforeSend: function () {
+                //         i = ityzl_SHOW_LOAD_LAYER();
+                //     },
+                //     success: function (msg) {
+                //         console.log(msg)
+                //         ityzl_CLOSE_LOAD_LAYER(i);
+                //         ityzl_SHOW_TIP_LAYER();
+                //     },
+                //     error: function (e, jqxhr, settings, exception) {
+                //         ityzl_CLOSE_LOAD_LAYER(i);
+                //     }
+                // });
+
+//示范一个公告层
+                layer.open({
+                    type: 1
+                    ,title: false //不显示标题栏
+                    ,closeBtn: false
+                    ,area: '300px;'
+                    ,shade: 0.8
+                    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                    ,resize: false
+                    // ,btn: ['火速围观', '残忍拒绝']
+                    ,btnAlign: 'c'
+                    ,moveType: 1 //拖拽模式，0或者1
+                    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">该小说未记录 正在获取小说资源 请稍等<br>内容</div>'
+                    ,
+
+                    // success: function(layero){
+                    //     var btn = layero.find('.layui-layer-btn');
+                    //     btn.find('.layui-layer-btn0').attr({
+                    //         href: 'http://www.layui.com/'
+                    //         ,target: '_blank'
+                    //     });
+                    // }
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+<a href="javascript:void(0);" id="btnRequest" >请求数据</a>
+</body>
+</html>

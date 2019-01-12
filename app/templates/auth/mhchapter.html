@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset="utf-8">
+<title>Flask JQuery</title>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/app.css')}}">
+</head>
+
+<body>
+
+<div id="wrapper" class='big'></div>
+
+<script type=text/javascript>
+    var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+</script>
+
+
+
+<div id="main" class="load-transition">
+
+    <div id="cartoon-book-posts" class="grid-wp">
+        <div class="grid-12">
+            <div class="active">
+                <ul class="newest">
+                    <li> <a class="post" target="_blank" title="師徒" href="/myflask/cartoon/num/3-0-n-297"> <span class="number">297</span> <span>師徒</span> </a> </li>
+                </ul>
+                <ul class="c-post-list">
+                    <div class="section">
+                        <a href="javascript:;">1-100</a>
+                    </div>
+                    {% for chapter in chapters %}
+                    <li> <a class="post" target="_blank" title="结束与开始" href="/myflask/auth/addpic/{{ chapter.id }}"> <span class="number">未定</span> <span>{{ chapter.chapter_name }}</span> </a> </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{#{% for chapter in chapters %}#}
+{#    <h2>{{ chapter.id }}</h2>#}
+{#    <h2>{{ chapter.mhname }}</h2>#}
+{#    <a class="chapterurl" href="/myflask/auth/addpic/{{ chapter.id }}">{{ chapter.chapter_name }}</a>#}
+{#{% endfor %}#}
+
+
+{#<script type=text/javascript>#}
+{#    $(function(){#}
+{#        var images=new Array();#}
+{#        rating_data = {"a":'123',"b":'456'},#}
+{#        $.ajax({#}
+{#            method:"get",#}
+{#            url: $SCRIPT_ROOT + '/auth' + '/getindexdata',#}
+{#            async:true,#}
+{#            data : rating_data,#}
+{#            dataType:"json",#}
+{#            success:function(data){#}
+{#                for(i=0 ;i<data.result.length;i++){#}
+{#                    alert(data.id)#}
+{#                    alert(data.mhname)#}
+{#                }#}
+{#            },#}
+{#            error:function(){#}
+{#                alert("请求失败！");#}
+{#            }#}
+{#        });#}
+{#    })#}
+{#</script>#}
+
+</body>
+</html>

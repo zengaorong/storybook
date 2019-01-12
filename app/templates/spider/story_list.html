@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://m.biquge.lu/s.php?ie=gbk&amp;s=15244670192641769733&amp;q=%E5%A4%A7%E9%81%93%E6%9C%9D%E5%A4%A9">
+<meta http-equiv="mobile-agent" content="format=xhtml; url=http://m.biquge.lu/s.php?ie=gbk&amp;s=15244670192641769733&amp;q=%E5%A4%A7%E9%81%93%E6%9C%9D%E5%A4%A9">
+<title>与“大道朝天”相关的小说_笔趣阁</title>
+<meta name="keywords" content="与“大道朝天”相关的小说,小说搜索,笔趣阁">
+<meta name="description" content="笔趣阁是广大书友最值得收藏的与“大道朝天”相关的小说阅读网，分类书库收录了当前最好看的与“大道朝天”相关的小说，免费提供高质量的2016与“大道朝天”相关的小说排行榜，是广大爱好者必备的小说阅读网。">
+<link href="{{url_for('static', filename='spider/css/style.css') }}" rel="stylesheet" type="text/css">
+
+	<style>
+		.button {
+			background-color: #FF9999   ; /* Green */
+			border: none;
+			color: white;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			width: 30%;
+			height: 20%;
+			margin: 26px 26px;
+			cursor: pointer;
+		}
+		.button3 {border-radius: 8px;}
+
+	</style>
+
+</head>
+<body>
+
+<div class="header">
+<div class="wrap">
+	<div class="logo">
+		<a href="http://www.baidu.com/" title="笔趣阁">笔趣阁<em>www.baidu.com</em></a>
+	</div>
+	<!--<script>search();</script>-->
+	<div class="search">
+		<form >
+			<input type="hidden" name="ie" value="utf-8"><input type="hidden" name="s" value="15244670192641769733"><input type="search" class="text" name="q" placeholder="小说名称、作者">
+			<input type="submit" class="btn" value="搜 索">
+		</form>
+</div>
+
+</div>
+</div>
+		<div class="nav">
+			<ul>
+				<li><a href="http://www.biquge.lu/">首页</a></li>
+                <li><a href="http://www.biquge.lu/modules/article/bookcase.php">我的书架</a></li>
+				<li><a href="http://www.biquge.lu/xuanhuanxiaoshuo/">小说管理</a></li>
+				<li><a href="http://www.biquge.lu/xiuzhenxiaoshuo/">排行榜单</a></li>
+			</ul>
+		</div><div class="clear"></div>
+<div class="wrap">
+	<div class="so_list bookcase">
+		<h2> 与“大道朝天”相关的小说 -  <font size="2px">(最多显示100条)</font></h2>
+		<div class="type_show">
+		{% for data in serch_list %}
+		<div class="bookbox"><div class="p10"><div class="bookimg"><a href="http://www.biquge.lu/book/39651/"><img src="data:image/jpg;base64,{{imagebase64}}"></a></div><div class="bookinfo"><h4 class="bookname"><a href="http://www.biquge.lu/book/39651/">{{data.story_name}}</a></h4><div class="author">作者：{{data.author}}</div><div class="update"><span>最新章节：</span><a href="..{{data.story_last_chapter_url}}">{{data.story_last_chapter_name}}</a></div><p style="display:-webkit-box;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;-webkit-box-orient:vertical;">{{data.story_intro}}</p><button class="button button3">8px</button><button class="button button3">8px</button></div></div></div>
+		{% endfor %}
+
+		</div>
+
+	</div>
+
+</div>
+
+
+<div id="footer" class="footer"><hr>
+	<p>该网站为学习之用，文章来源于笔趣阁，如有侵权请联系 1904959670@qq.com ,将及时处理!</p>
+	<p>Copyright &#169; 笔趣阁 All Rights Reserved.</p>
+</div>
+
+</div>
+
+</body></html>

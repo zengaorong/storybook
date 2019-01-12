@@ -1,0 +1,23 @@
+{% import "_macros.html" as macros %}
+<!DOCTYPE html>
+<html>
+
+<meta charset="utf-8">
+<title>Flask JQuery</title>
+<body>
+
+<div id="wrapper" class='big'></div>
+
+<script type=text/javascript>
+    var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+
+</script>
+
+{% include 'chaptercontrol/_chapterpost.html' %}
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.chapterlist') }}
+</div>
+{% endif %}
+</body>
+</html>

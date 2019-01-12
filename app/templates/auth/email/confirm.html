@@ -1,0 +1,8 @@
+<p>Dear {{ user.username }},</p>
+<p>Welcome to <b>Flasky</b>!</p>
+<p>To confirm your account please <a href="http://120.79.217.238:8080{{ url_for('auth.confirm', token=token) }}">click here</a>.</p>
+<p>Alternatively, you can paste the following link in your browser's address bar:</p>
+<p>http://120.79.217.238:8080{{ url_for('auth.confirm', token=token) }}</p>
+<p>Sincerely,</p>
+<p>The Flasky Team</p>
+<p><small>Note: replies to this email address are not monitored.</small></p>

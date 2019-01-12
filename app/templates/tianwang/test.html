@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>分类筛选</title>
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='tool/select/css/base.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='tool/select/css/home.css')}}">
+</head>
+<body>
+<section class="aui-screen-box">
+    <div class="aui-screen-content">
+        <div class="aui-choice-screen">
+            <div class="aui-screen-head-choice">
+                <dl>
+                    <dt>已选条件：</dt>
+                    <dd style="display:none" class=aui-clear-delete>
+                        <div class=aui-clear-list></div>
+                        <div style="display:none" class="aui-eliminate">清除筛选条件</div>
+                    </dd>
+                </dl>
+            </div>
+            <div id="aui-selectList" class="aui-screen-list-box">
+                <dl class="aui-screen-list-item" attr="terminal_brand_s">
+                    <dt>级别：</dt>
+                    <dd>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="微型车">微型车</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="小型车">小型车</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="紧凑型车">紧凑型车</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="中型车">中型车</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="中大型车">中大型车</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="大型车">大型车</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="全部SUV">全部SUV</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="MPV">MPV</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="跑车">跑车</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="皮卡">皮卡</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="微面">微面</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="轻客">轻客</a>
+                    </dd>
+                </dl>
+                <dl class="aui-screen-list-item" attr="">
+                    <dt>价格：</dt>
+                    <dd>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="5万以下">5万以下</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="5-8万">5-8万</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="8-12万">8-12万</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="12-18万">12-18万</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="18-25万">18-25万</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="25-40万">25-40万</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="40-80万">40-80万</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="80万以上">80万以上</a>
+                        <label class="aui-sr-input">
+                            <input type="text" placeholder="" value="">
+                            -
+                            <input type="text" placeholder="" value="">
+                            <button>确认</button>
+                        </label>
+                    </dd>
+                </dl>
+                <dl class=" aui-screen-list-item" attr="aui-terminal">
+                    <dt>排量：</dt>
+                    <dd>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">1.0L及以下</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">1.1-1.6L</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">1.7-2.0L</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">2.1-2.5L</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">2.6-3.0L</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">3.1-4.0L</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">4.0L以上</a>
+                    </dd>
+                </dl>
+                <dl class=" aui-screen-list-item" attr="aui-terminal">
+                    <dt>能源：</dt>
+                    <dd>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">汽油</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">柴油</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">油电混合</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">纯电动</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">插电式混动</a>
+                    </dd>
+                </dl>
+                <dl class=" aui-screen-list-item" attr="aui-terminal">
+                    <dt>国别：</dt>
+                    <dd>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">中国</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">德国</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">日本</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">美国</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">韩国</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">其他</a>
+                    </dd>
+                </dl>
+                <dl class=" aui-screen-list-item" attr="aui-terminal">
+                    <dt>结构：</dt>
+                    <dd>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">两厢</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">三厢</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">掀背</a>
+                        <a href="javascript:void(0)" values2="" values1="" attrval="">其他</a>
+                    </dd>
+                </dl>
+                <dl class="aui-screen-list-item aui-aui-screen-list-item" attr="aui-terminal">
+                    <dt>按配置：</dt>
+                    <dd>
+                        <ul class="aui-list-pz-size">
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">全景天窗
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">电动天窗
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">电动调节座椅
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">车身ESP
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">氙气大灯
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">GPS导航
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">定速巡航
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">真皮座椅
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">倒车雷达
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">全自动空调
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">多功能方向盘
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">LED大灯
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">倒车影像
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" value="21">无钥匙启动
+                                </label>
+                            </li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="{{url_for('static', filename='jquery/jquery-1.4.3.min.js')}}"></script>
+<script type="text/javascript">
+    var dlNum = $("#aui-selectList").find("dl");
+    for (i = 0; i < dlNum.length; i++) {
+        $(".aui-screen-head-choice .aui-clear-list").append("<div class=\"aui-selected-info selectedShow\" style=\"display:none\"><span></span><label></label><em></em></div>");
+    }
+    var refresh = "true";
+    $(".aui-screen-list-item a ").live("click", function() {
+        var text = $(this).text();
+        var selectedShow = $(".selectedShow");
+        var textTypeIndex = $(this).parents("dl").index();
+        var textType = $(this).parent("dd").siblings("dt").text();
+        index = textTypeIndex - (2);
+        $(".aui-clear-delete").show();
+        $(".selectedShow").eq(index).show();
+        $(this).addClass("selected").siblings().removeClass("selected");
+        selectedShow.eq(index).find("span").text(textType);
+        selectedShow.eq(index).find("label").text(text);
+        var show = $(".selectedShow").length - $(".selectedShow:hidden").length;
+        if (show > 1) {
+            $(".aui-eliminate").show();
+        }
+
+    });
+    $(".selectedShow em").live("click", function() {
+        $(this).parents(".selectedShow").hide();
+        var textTypeIndex = $(this).parents(".selectedShow").index();
+        index = textTypeIndex;
+        $(".aui-screen-list-item").eq(index).find("a").removeClass("selected");
+
+        if ($(".aui-screen-list-item .selected").length < 2) {
+            $(".aui-eliminate").hide();
+        }
+    });
+
+    $(".aui-eliminate").live("click", function() {
+        $(".selectedShow").hide();
+        $(this).hide();
+        $(".aui-screen-list-item a ").removeClass("selected");
+    });
+</script>
+</body>
+</html>

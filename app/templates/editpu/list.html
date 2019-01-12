@@ -1,0 +1,29 @@
+{% import "_macros.html" as macros %}
+<!DOCTYPE html>
+<html>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=0.5">
+<title>Flask JQuery</title>
+<!-- 插入jquery -->
+{#<script src="{{url_for('static', filename='jquery-3.2.1/jquery-3.2.1.js')}}"></script>#}
+
+{#<style type="text/css" src="{{url_for('static', filename='css/app.css')}}" ></style>#}
+
+<body>
+
+<div id="wrapper" class='big'></div>
+
+<script type=text/javascript>
+    var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+
+</script>
+
+{% include 'editpu/_list.html' %}
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.list',qu_name=qu_name) }}
+</div>
+{% endif %}
+</body>
+</html>

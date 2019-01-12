@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+
+<meta charset="utf-8">
+<title>Flask JQuery</title>
+<head>
+    <script src="{{url_for('static', filename='jquery-3.2.1/jquery-3.2.1.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugin/webuploader/webuploader.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugin/webuploader/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugin/webuploader/loadstyle.css')}}">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='plugin/xialakuang/autocomplete.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='plugin/xialakuang/style.css')}}">
+
+    <script type="text/javascript" src="{{url_for('static', filename='plugin/xialakuang/jquery.js')}}"> </script>
+    <script type="text/javascript" src="{{url_for('static', filename='plugin/xialakuang/autocomplete.js')}}"></script>
+
+    <script type="text/javascript">
+        var proposals = [];
+
+        $(document).ready(function(){
+            $('#search-form').autocomplete({
+                hints: proposals,
+                width: 300,
+                height: 30,
+                onSubmit: function(text){
+{#                    console.log(uploader.options.server);#}
+                    $('#message').attr({'data':text})
+                }
+            });
+        });
+
+        function addurl() {
+            uploader.options.server = '/api/uploadImage' + '?type=1&uploadurl=pics&mhname=' + $('#message').attr('data') + '&chaptername=' + $('#chaptername').attr('value');
+        }
+    </script>
+
+    {#    普惠调整后的上传样式#}
+    <style>
+        .itl_tags .tags > p{width: 100%;}
+        .filter-box{border: none;}
+        .i_info .ii_con_r{background:#fff;padding: 0 0 160px;}
+        .listCon{padding-top: 0;}
+        .fs-section__left{width: 385px;}
+        .poi-section--onsale .content-title,.poi-section--shop .content-title,.poi-section .content-title{font-weight: 500;border-bottom: 1px solid #dedede;}
+        .rate-list__item .user-info-block .avatar-wrapper > img{width: 70px;height: 70px; border-radius: 2px;}
+        .rate-list__item,.evaluate-box .ratelist-content{padding-left: 0;}
+        .rate-list__item .user-info-block .vip_level_high{font-size: 14px;color:#ad0700;text-align: center;display: inline-block;width: 100%;padding-top: 10px;}
+        .rate-list__item .user-info-block .avatar-wrapper{height:65px;}
+        .fs-section{border: none;padding-left: 20px;}
+        .poi-detail .seller-info-head{width: 380px;}
+        .poi-detail{background: #f5f5f5;box-shadow:initial;}
+        .pic-thumbnail img{max-width: 100px;max-height: 100px;}
+
+        /*上传样式*/
+        #uploader .placeholder{min-height: 120px;
+            padding-top: 79px;
+            background-position-y: 15px;}
+        /*.rate-list__item .content img{width: 120px;height: 100px;}*/
+    </style>
+
+
+
+</head>
+
+
+<body>
+
+<div id="demo">
+    <div class="wrapper">
+        <h3>选择上传漫画</h3>
+        <div id="search-form"></div>
+        <div id="message"></div>
+    </div>
+</div>
+
+<div>
+    <input type="text" id="chaptername" value=""/>
+</div>
+
+<button type="button" onclick="addurl()">确定</button>
+
+<div id="wrapper">
+    <div id="container">
+        <!--头部，相册选择和格式选择-->
+
+        <div id="uploader">
+            <div class="queueList">
+                <div id="dndArea" class="placeholder">
+                    <div id="filePicker"></div>
+                    <p>或将照片拖到这里，单次最多可选3张</p>
+                </div>
+            </div>
+            <div class="statusBar" style="display:none;">
+                <div class="progress">
+                    <span class="text">0%</span>
+                    <span class="percentage"></span>
+                </div><div class="info"></div>
+                <div class="btns">
+                    <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {#    页面设置变量并传入js文件中#}
+    <script type="text/javascript" src="{{url_for('static', filename='plugin/webuploader/webuploader.js')}}"></script>
+    <script type="text/javascript" id="testScript" src="{{url_for('static', filename='plugin/webuploader/upload_mh.js')}}" data=""></script>
+
+
+
+{#    <script id="testScript" type="text/javascript" src="test.js" data="a=b&c=d"></script>#}
+
+
+
+    {#    <script type="text/javascript">#}
+{#        jQuery(function() {#}
+{#                uploader = WebUploader.create({#}
+{#                    // 文件接收服务端。#}
+{#                    server: '/auth/uploadImage'#}
+{#                });#}
+{#            }#}
+{#        )#}
+{#    </script>#}
+
+
+</div>
+
+
+
+
+
+</body>
+</html>

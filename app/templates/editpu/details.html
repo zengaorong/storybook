@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Test for jQuery validate() plugin</title>
+    <link rel="stylesheet" media="screen" href="css/screen.css">
+    <style>
+        .warning {
+            color: red;
+        }
+    </style>
+    <script src="{{url_for('static', filename='jQuery-Validate/lib/jquery.js')}}"></script>
+    <script src="{{url_for('static', filename='jQuery-Validate/lib/jquery.mockjax.js')}}"></script>
+    <script src="{{url_for('static', filename='jQuery-Validate/lib/jquery.form.js')}}"></script>
+    <script src= "{{url_for('static', filename='jQuery-Validate/dist/jquery.validate.js')}}"></script>
+
+</head>
+<body>
+
+<form class="form-horizontal" role="form" id="loginForm" method="post" action="{{url_for('spider.submit')}}">
+    <div class="form-group">
+        <label for="email"  class="col-sm-3 control-label">id：</label>
+        <div class="col-sm-7">
+            {{ form.id }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email"  class="col-sm-3 control-label">曲名：</label>
+        <div class="col-sm-7">
+            {{ form.title }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email"  class="col-sm-3 control-label">简谱：</label>
+        <div class="col-sm-7">
+            {{ form.jianpu }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email"  class="col-sm-3 control-label">原网站：</label>
+        <div class="col-sm-7">
+            {{ form.oldurl }}
+        </div>
+    </div>
+{#    <div class="form-group">#}
+{#        <div class="col-sm-7">#}
+{#            {{ form.submit() }}#}
+{#        </div>#}
+{#    </div>#}
+
+</form>
+
+
+</body>
+</html>
