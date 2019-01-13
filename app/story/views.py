@@ -98,7 +98,7 @@ def getfile(fileurl):
                     pass
                 else:
                     loadfile.append(os.path.join(path,x))
-                    imagefile.append(x.decode("gbk"))
+                    imagefile.append(x)
         except Exception,e:
             print str(e) + path
 
