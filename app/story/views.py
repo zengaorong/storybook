@@ -107,6 +107,7 @@ def getfile(fileurl):
 @story.route('/book/piclist', methods=['GET', 'POST'])
 def piclist():
     file_url =  getfile(current_app.config['UPLOADED_PHOTOS_DEST'])
+    print file_url
     # getDate(getfile(current_app.config['UPLOADED_PHOTOS_DEST'])[0])
     return render_template('spider/filelist.html',file_url=file_url)
 
