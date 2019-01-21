@@ -108,9 +108,9 @@ def __load_one_chapter(chapter_list,key,num):
             num += 1
             print num
             check_num = 0
-        except:
+        except Exception ,e:
             check_num = check_num - 1
-            print "error"
+            print e
             print chapter_num
 
     check_num = 5
@@ -149,7 +149,7 @@ for key in list:
     download_threads = []
     for key in chapter_list[len(lists):]:
 
-        if len(threading.enumerate()) >= 4:
+        if len(threading.enumerate()) >= 10:
             time.sleep(0.5 + len(threading.enumerate())*0.1)
 
         download_thread = threading.Thread(target=__load_one_chapter,

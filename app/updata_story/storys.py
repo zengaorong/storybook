@@ -30,7 +30,14 @@ def story_spider_for_biequge(url,list):
     #
     soup = BeautifulSoup(respons.text.replace('\r','\n'),"html.parser")
     div_list = soup.find("div" ,id="content")
-    insert_chapter_todb([uuid.uuid1(),list[0],list[1],list[2],list[3],div_list,list[4]])
+
+    if div_list == None:
+        time.sleep(0.2)
+        with open("log.txt",'a+') as f:
+            f.writelines(str(list[0]) + "----" + str(list[1]) + '\n' )
+        raise RuntimeError('testError')
+    else:
+        insert_chapter_todb([uuid.uuid1(),list[0],list[1],list[2],list[3],div_list,list[4]])
 
 
 
