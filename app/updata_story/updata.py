@@ -149,7 +149,7 @@ for key in list:
     download_threads = []
     for key in chapter_list[len(lists):]:
 
-        if len(threading.enumerate()) >= 10:
+        if len(threading.enumerate()) >= 3:
             time.sleep(0.5 + len(threading.enumerate())*0.1)
 
         download_thread = threading.Thread(target=__load_one_chapter,
