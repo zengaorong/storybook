@@ -6,10 +6,11 @@ import time
 from bs4 import BeautifulSoup
 from data.operatedb import check_chapter_todb
 from storys import story_spider_for_biequge
+import threading
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
-app.config['SQLALCHEMY_DATABASE_URI'] ='mysql://root:7monthdleo@120.79.217.238/spider'
+app.config['SQLALCHEMY_DATABASE_URI'] ='mysql://root:7monthdleo@120.79.217.238/story'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -80,6 +81,7 @@ def get_IP(nums):
 
 ip_list = [u'101.251.216.103:8080', u'218.60.8.98:3129', u'61.128.208.94:3128', u'222.74.61.98:53281', u'123.138.89.132:9999']
 
+
 proxies = {
     'https': 'https://182.61.170.45:3128',
 }
@@ -88,6 +90,30 @@ url = "http://123.207.35.36:5010/get/"
 # url_shuhui = 'http://prod-api.ishuhui.com/ver/ea149533/setting/page?page=/&.json'
 # url_biqu = "http://www.biquge.lu/book/16364/"
 
+
+def __load_one_chapter(chapter_list,key,num):
+    check_num = 5
+    print key.string
+    chapter_name = key.string
+    chapter_url = key.find('a')['href']
+    story_id = key.find('a')['href'].split('/')[-2]
+    chapter_num = key.find('a')['href'].split('/')[-1].replace('.html',"")
+    #http://www.biquge.lu/book/39651/19467857.html
+    if check_chapter_todb(story_id,chapter_num) :
+        print "have"
+        return
+    while check_num!=0:
+        try:
+            story_spider_for_biequge('http://www.biquge.lu/'+key.find('a')['href'],[story_id,chapter_num,chapter_name,chapter_url,chapter_list.index(key)+1])
+            num += 1
+            print num
+            check_num = 0
+        except:
+            check_num = check_num - 1
+            print "error"
+            print chapter_num
+
+    check_num = 5
 
 
 list = Story.query.filter_by()
@@ -120,28 +146,19 @@ for key in list:
 
     check_num = 5
     chapter_list = chapter_list[6:]
+    download_threads = []
     for key in chapter_list[len(lists):]:
-        print key.string
-        chapter_name = key.string
-        chapter_url = key.find('a')['href']
-        story_id = key.find('a')['href'].split('/')[-2]
-        chapter_num = key.find('a')['href'].split('/')[-1].replace('.html',"")
-        #http://www.biquge.lu/book/39651/19467857.html
-        if check_chapter_todb(story_id,chapter_num) :
-            print "have"
-            continue
-        while check_num!=0:
-            try:
-                story_spider_for_biequge('http://www.biquge.lu/'+key.find('a')['href'],[story_id,chapter_num,chapter_name,chapter_url,chapter_list.index(key)+1])
-                num += 1
-                print num
-                check_num = 0
-            except:
-                check_num = check_num - 1
-                print "error"
-                print chapter_num
 
-        check_num = 5
+        if len(threading.enumerate()) >= 4:
+            time.sleep(0.5 + len(threading.enumerate())*0.1)
+
+        download_thread = threading.Thread(target=__load_one_chapter,
+                                           args=(chapter_list,key,num))
+        download_threads.append(download_thread)
+        download_thread.start()
+    [ t.join() for t in download_threads ]
+
+
 
 # db.create_all()
 # db.session.commit()

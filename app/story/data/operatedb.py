@@ -8,7 +8,7 @@ import platform
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
-dataname = "spider"
+dataname = "story"
 host='120.79.217.238'
 
 

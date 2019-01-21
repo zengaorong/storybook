@@ -29,16 +29,16 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:7monthdleo@120.79.217.238/spider'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:7monthdleo@120.79.217.238/story'
 
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:7monthdleo@120.79.217.238/spider'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:7monthdleo@120.79.217.238/story'
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:7monthdleo@120.79.217.238/spider'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:7monthdleo@120.79.217.238/story'
 
 
 config = {

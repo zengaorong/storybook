@@ -17,7 +17,7 @@ sys.setdefaultencoding('utf-8')
 # 漫画首页
 @story.route('/leotest', methods=['GET', 'POST'])
 def index():
-    return render_template('spider/loading.html')
+    return render_template('storybook/loading.html')
 
 # 搜索漫画
 @story.route('/search/story', methods=['GET', 'POST'])
@@ -25,7 +25,7 @@ def search_story():
     serch_str = "元尊"
     serch_list = get_serch_list(serch_str)
     imagebase64 = get_picbase64("app/leotool/bs64pic/chaotian.jpg")
-    return render_template('spider/story_list.html',serch_list=serch_list,imagebase64=imagebase64)
+    return render_template('storybook/story_list.html',serch_list=serch_list,imagebase64=imagebase64)
 
 # 小说内容界面
 @story.route('/book/<story>/<chapter>', methods=['GET', 'POST'])
@@ -46,7 +46,7 @@ def book(story,chapter):
         lat_chapter_url = ""
 
     story_text = storyChapter.chapter_text.replace("&amp;1t;/p&gt;","")
-    return render_template('spider/story_base.html',chapter_name=storyChapter.chapter_name,story_data=story_text,pre_chapter_url=pre_chapter_url,lat_chapter_url=lat_chapter_url)
+    return render_template('storybook/story_base.html',chapter_name=storyChapter.chapter_name,story_data=story_text,pre_chapter_url=pre_chapter_url,lat_chapter_url=lat_chapter_url)
 
 # 小说章节界面
 @story.route('/book/<story>', methods=['GET', 'POST'])
@@ -63,7 +63,7 @@ def chapter(story):
         story_chapter_list.append(temp_dict)
 
     #story_text = storyChapter.chapter_text
-    return render_template('spider/story_chapter.html',story_chapter_list=story_chapter_list)
+    return render_template('storybook/story_chapter.html',story_chapter_list=story_chapter_list)
 
 
 #current_app.config['UPLOADED_PHOTOS_DEST']
@@ -109,14 +109,14 @@ def piclist():
     file_url =  getfile(current_app.config['UPLOADED_PHOTOS_DEST'])
     print file_url
     # getDate(getfile(current_app.config['UPLOADED_PHOTOS_DEST'])[0])
-    return render_template('spider/filelist.html',file_url=file_url)
+    return render_template('storybook/filelist.html',file_url=file_url)
 
 @story.route('/pics/<pic>', methods=['GET', 'POST'])
 def pic(pic):
     image_list = getDate(os.path.join(current_app.config['UPLOADED_PHOTOS_DEST'],pic))
     print pic
     print image_list[0]
-    return render_template('spider/test.html',pic=pic,image_list=image_list)
+    return render_template('storybook/test.html',pic=pic,image_list=image_list)
 
 
 ALLOWED_EXTENSIONS = ['jpg', 'png']
@@ -132,7 +132,7 @@ def allowe_file(filename):
 
 @story.route('/upload', methods=['GET', 'POST'])
 def updata():
-    return render_template('spider/upload.html')
+    return render_template('storybook/upload.html')
 
 
 

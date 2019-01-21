@@ -4,6 +4,7 @@ import time
 import requests
 from bs4 import BeautifulSoup
 from datetime import  datetime
+from data.operatedb import check_story_todb,insert_story_todb
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -26,11 +27,13 @@ def get_serch_list(serch_str):
         list_a = cell.find_all('a')
         story_url,story_last_chapter_url,story_name,story_last_chapter_name = list_a[1]['href'],list_a[2]['href'],list_a[1].string,list_a[2].string
         author = cell.find('div',{'class','author'}).string
+        img_url = cell.find('div',{'class','bookimg'}).contents[0].contents[0]['src']
         story_intro = cell.find('p').string
         story_id =  story_url.split('/')[-2]
         temp_dict = {
             'story_id' : story_id,
             'story_url' : story_url,
+            'img_url' : img_url,
             'story_name' : story_name,
             'story_intro' : story_intro,
             'author' : author,
@@ -38,5 +41,8 @@ def get_serch_list(serch_str):
             'story_last_chapter_name' : story_last_chapter_name
         }
         story_list.append(temp_dict)
+        if not check_story_todb(story_id):
+            print story_name
+            insert_story_todb([story_id , story_url,story_name,story_intro,author,story_last_chapter_url,story_last_chapter_name,0])
 
     return story_list

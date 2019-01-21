@@ -8,7 +8,7 @@ import platform
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
-dataname = "spider"
+dataname = "story"
 host='120.79.217.238'
 
 
@@ -38,7 +38,7 @@ def insert_chapter_todb(list):
         charset='utf8'
     )
     cur = conn.cursor()
-    sqli =  "insert into storyChapter(chapter_id,story_id,chapter_num,chapter_name,chapter_url,chapter_text)value(%s,%s,%s,%s,%s,%s)"
+    sqli =  "insert into storyChapter(chapter_id,story_id,chapter_num,chapter_name,chapter_url,chapter_text,chapter_order)value(%s,%s,%s,%s,%s,%s,%s)"
     cur.execute(sqli,list)
     conn.commit()
     conn.close()
