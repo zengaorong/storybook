@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Flasky - Register{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Register</h1>
+</div>
+<div class="col-md-4">
+    {{ wtf.quick_form(form) }}
+</div>
+<!--<form id="fromtest" action="/login" method="post">-->
+    <!--{{ form.hidden_tag() }}-->
+    <!--{{ form.id.label }}{{ form.id }}-->
+    <!--{{ form.mhname.label }}{{ form.mhname }}-->
+    <!--{{ form.hidden_pic_url.label }}{{ form.hidden_pic_url }}-->
+    <!--{{ form.submit() }}-->
+<!--</form>-->
+
+{% endblock %}

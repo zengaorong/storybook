@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>功能齐全的jquery图片查看器插件|DEMO_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='static/spider/css/normalize.css') }}" /><!--CSS RESET-->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='static/spider/css/htmleaf-demo.css') }}" /><!--CSS RESET-->
+    <link href="{{url_for('static', filename='static/spider/css/lightgallery.css') }}" rel="stylesheet">
+
+</head>
+<body>
+<div class="htmleaf-container">
+
+    <div class="demo-gallery">
+        <ul id="lightgallery" class="list-unstyled row">
+
+            {% for data in image_list %}
+            <li class="col-xs-6 col-sm-4 col-md-3" data-src="{{url_for('static', filename='static/upload'+'/'+pic+'/'+data)}}">
+                <a href="">
+                    <img class="img-responsive" src="{{url_for('static', filename='static/upload'+'/'+pic+'/'+data)}}">
+                </a>
+            </li>
+            {% endfor %}
+
+
+
+        </ul>
+    </div>
+</div>
+</div>
+
+<script src="{{url_for('static', filename='static/spider/js/jquery-1.11.0.min.js') }}" type="text/javascript"></script>
+<script src="{{url_for('static', filename='static/spider/js/lightgallery-all.min.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#lightgallery').lightGallery();
+    });
+</script>
+</body>
+</html>
