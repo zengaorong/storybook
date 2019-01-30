@@ -14,7 +14,7 @@ img{border:none;}.clear{zoom:1;}
 .header{padding:10px 0 10px;}
 .header .wrap{position:relative;height:60px;overflow:hidden;}
 .wrap .logo{float:left;margin-right:20px;padding-right:20px;xborder-right:1px solid #ddd;overflow:hidden;display:block;}
-.wrap .logo a{background:url(/images/logo.gif) no-repeat;display:block;float:left;height:60px;text-indent:-9999px;width:250px;}
+.wrap .logo a{background:url(..`/static/images/logos.gif) no-repeat;display:block;float:left;height:60px;text-indent:-9999px;width:250px;}
 .search{float:left;padding:15px 0;overflow:hidden;}
 .search form{width:420px;height:32px;border-radius: 2px;border:2px solid #88C6E5;position:relative;overflow:hidden;}
 .search .text{width:100%;line-height:20px;padding:6px 0 6px 6px;border:none;}
