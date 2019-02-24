@@ -18,7 +18,7 @@ sys.setdefaultencoding('utf-8')
 # 搜索漫画
 @story.route('/search', methods=['GET', 'POST'])
 def search_story():
-    serch_str = "元尊"
+    serch_str = "择天记"
     serch_list = get_serch_list(serch_str)
     imagebase64 = get_picbase64("app/leotool/bs64pic/chaotian.jpg")
     return render_template('storybook/story_list.html',serch_list=serch_list,imagebase64=imagebase64)

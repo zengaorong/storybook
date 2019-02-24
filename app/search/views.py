@@ -5,7 +5,7 @@ from flask_login import login_user, logout_user, login_required, \
     current_user
 from . import search
 from .. import db
-from operate import get_serch_list
+from operate import get_serch_list,check_story_todb
 from app.leotool.bs64pic.pic_to_bs64 import get_picbase64
 from ..models import StoryChapter,Story
 import sys
@@ -128,9 +128,10 @@ def addstory():
 
     stid = request.form.get('stid',"",str)
     print stid
-    add_story(stid)
-
-    return jsonify(data="ok")
+    if check_story_todb(stid):
+        pass
+    else:
+        return jsonify(data="ok")
 
 
 
