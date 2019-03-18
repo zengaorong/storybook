@@ -8,10 +8,10 @@ class Config:
     MAIL_PORT = int(os.environ.get('MAIL_PORT', '465'))
     MAIL_USE_SSL = os.environ.get('MAIL_USE_SSL', 'true').lower() in \
         ['true', 'on', '1']
-    MAIL_USERNAME = os.environ['MAIL_USERNAME']
-    MAIL_PASSWORD = os.environ['MAIL_PASSWORD']
+    MAIL_USERNAME = os.environ.get['MAIL_USERNAME']
+    MAIL_PASSWORD = os.environ.get['MAIL_PASSWORD']
     FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
-    FLASKY_MAIL_SENDER = os.environ['MAIL_USERNAME']
+    FLASKY_MAIL_SENDER = os.environ.get['MAIL_USERNAME']
     FLASKY_ADMIN = '1904959670@qq.com'
     UPLOADED_PHOTOS_DEST = os.getcwd() + '/app/static/upload'
     # UPLOADED_PHOTOS_DEST = os.environ.get(os.getcwd(), 'app/static/uploads')
