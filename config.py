@@ -12,6 +12,7 @@ class Config:
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
     FLASKY_MAIL_SENDER = os.environ.get('MAIL_USERNAME')
+
     FLASKY_ADMIN = '1904959670@qq.com'
     UPLOADED_PHOTOS_DEST = os.getcwd() + '/app/static/upload'
     # UPLOADED_PHOTOS_DEST = os.environ.get(os.getcwd(), 'app/static/uploads')
