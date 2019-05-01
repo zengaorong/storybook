@@ -44,6 +44,8 @@ def get_serch_list(serch_str):
         story_intro = cell.find('p').string
         # print story_url,story_last_chapter_url,story_name,story_last_chapter_name,author,story_intro
         story_id =  story_url.split('/')[-2]
+        if not check_story_todb(story_id):
+            insert_story_todb([story_id , story_url,story_name,story_intro,author,story_last_chapter_url,story_last_chapter_name,0])
         temp_dict = {
             'story_id' : story_id,
             'story_url' : story_url,

@@ -60,7 +60,7 @@
 		<h2> 与“大道朝天”相关的小说 -  <font size="2px">(最多显示100条)</font></h2>
 		<div class="type_show">
 		{% for data in serch_list %}
-		<div class="bookbox"><div class="p10"><div class="bookimg"><a href="/storybook/story/book/{{data.story_id}}"><img src="http://www.biquge.lu/{{data.img_url}}"></a></div><div class="bookinfo"><h4 class="bookname"><a href="/storybook/story/book/{{data.story_id}}">{{data.story_name}}</a></h4><div class="author">作者：{{data.author}}</div><div class="update"><span>最新章节：</span><a href="..{{data.story_last_chapter_url}}">{{data.story_last_chapter_name}}</a></div><p style="display:-webkit-box;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;-webkit-box-orient:vertical;">{{data.story_intro}}</p><button class="button button3" onclick="javascript:return addstory({{data.story_id}})">添加小说</button><button class="button button3">8px</button></div></div></div>
+		<div class="bookbox"><div class="p10"><div class="bookimg"><a href="/storybook/story/book/{{data.story_id}}"><img src="http://www.biquge.lu/{{data.img_url}}"></a></div><div class="bookinfo"><h4 class="bookname"><a href="/storybook/story/book/{{data.story_id}}">{{data.story_name}}</a></h4><div class="author">作者：{{data.author}}</div><div class="update"><span>最新章节：</span><a href="..{{data.story_last_chapter_url}}">{{data.story_last_chapter_name}}</a></div><p style="display:-webkit-box;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;-webkit-box-orient:vertical;">{{data.story_intro}}</p><button class="button button3" onclick="javascript:return addstory({{data.story_id}})">看小说</button><button class="button button3">加入收藏</button></div></div></div>
 		{% endfor %}
 
 		</div>

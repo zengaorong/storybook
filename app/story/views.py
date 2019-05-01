@@ -7,8 +7,9 @@ from . import story
 from .. import db
 from serch import get_serch_list
 from app.leotool.bs64pic.pic_to_bs64 import get_picbase64
-from ..models import StoryChapter
+from ..models import StoryChapter,Story
 from .form import fromtest
+from app.leotool.file_date_read import getDate
 import sys
 
 reload(sys)
@@ -18,10 +19,23 @@ sys.setdefaultencoding('utf-8')
 # 搜索漫画
 @story.route('/search', methods=['GET', 'POST'])
 def search_story():
-    serch_str = "择天记"
+    serch_str = request.args.get('stname')
     serch_list = get_serch_list(serch_str)
     imagebase64 = get_picbase64("app/leotool/bs64pic/chaotian.jpg")
     return render_template('storybook/story_list.html',serch_list=serch_list,imagebase64=imagebase64)
+
+#check 通过id判断该小说是否加入了列表
+# 搜索漫画
+@story.route('/check_story_by_id', methods=['GET'])
+def check_story_by_id():
+    story_id = request.args.get('story_id')
+    story_search = Story.query.filter_by(story_id=story_id).first()
+    if story_search:
+        print story_search
+        return True
+    else:
+        print story_search
+        return False
 
 # 小说内容界面
 @story.route('/book/<story>/<chapter>', methods=['GET', 'POST'])
@@ -109,4 +123,24 @@ def piclist():
 
 @story.route('/index', methods=['GET', 'POST'])
 def index():
-    return render_template('storybook/story_index.html')
+    story_list = Story.query.filter_by()
+    story_updatas = story_list
+
+    # 配置强力推荐文件
+    # getDate(os.path.join(current_app.config['UPLOADED_PHOTOS_DEST'],"test.txt"))
+    # file_url =  getfile(current_app.config['UPLOADED_PHOTOS_DEST'])
+    # print file_url
+    with open(os.path.join(current_app.config['UPLOADED_PHOTOS_DEST'],"test.txt")) as f:
+        book_tuijian_list = f.readlines()
+
+    tuijian_list = []
+    for key in book_tuijian_list:
+#         大道朝天
+#
+# 飞剑问道
+#
+# 元尊
+        print key
+        tuijian_list.append(Story.query.filter_by(story_name=key).first())
+
+    return render_template('storybook/story_index.html',story_updatas=story_updatas,tuijian_list=tuijian_list)
