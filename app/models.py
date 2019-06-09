@@ -288,17 +288,17 @@ class Story(db.Model):
 # 考虑的问题 是否使用ssdb来处理会更好 没有一致性的排序 会使得查询时间非常长 是否隔一段时间 执行排序的操作
 #  chapter_id,story_id,chapter_num,chapter_name,chapter_url,chapter_text
 class StoryChapter(db.Model):
-    __tablename__ = 'storyChapter'
-    chapter_id = db.Column(db.VARCHAR(36), primary_key=True)
-    story_id = db.Column(db.VARCHAR(36), db.ForeignKey('story.story_id'))
-    chapter_num = db.Column(db.Integer)
-    chapter_name = db.Column(db.String(128))
-    chapter_url = db.Column(db.String(128))
-    chapter_text = db.Column(db.Text())
-    chapter_order = db.Column(db.Integer)
+        __tablename__ = 'storyChapter'
+        chapter_id = db.Column(db.VARCHAR(36), primary_key=True)
+        story_id = db.Column(db.VARCHAR(36), db.ForeignKey('story.story_id'))
+        chapter_num = db.Column(db.Integer)
+        chapter_name = db.Column(db.String(128))
+        chapter_url = db.Column(db.String(128))
+        chapter_text = db.Column(db.Text())
+        chapter_order = db.Column(db.Integer)
 
-    def __repr__(self):
-        return '<StoryChapter %r>' % self.chapter_name
+        def __repr__(self):
+            return '<StoryChapter %r>' % self.chapter_name
 
 
 

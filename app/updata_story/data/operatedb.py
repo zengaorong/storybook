@@ -38,6 +38,8 @@ def insert_chapter_todb(list):
         charset='utf8'
     )
     cur = conn.cursor()
+    # print list[-2]
+    # sqli =  "insert into storyChapterTest(chapter_id,story_id,chapter_num,chapter_name,chapter_url,chapter_text,chapter_order)value(%s,%s,%s,%s,%s,%s,%s)"
     sqli =  "insert into storyChapter(chapter_id,story_id,chapter_num,chapter_name,chapter_url,chapter_text,chapter_order)value(%s,%s,%s,%s,%s,%s,%s)"
     cur.execute(sqli,list)
     conn.commit()
@@ -92,6 +94,8 @@ def check_chapter_todb(story_id,chapter_num):
     if result==long(0):
         return False
     return True
+
+
 
 def check_story_todb(story_id):
     conn= MySQLdb.connect(

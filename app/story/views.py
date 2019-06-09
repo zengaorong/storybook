@@ -15,7 +15,6 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-
 # 搜索漫画
 @story.route('/search', methods=['GET', 'POST'])
 def search_story():

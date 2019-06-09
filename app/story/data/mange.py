@@ -43,6 +43,20 @@ class StoryChapter(db.Model):
         return '<StoryChapter %r>' % self.chapter_name
 
 
+class StoryChapter_test(db.Model):
+    __tablename__ = 'storyChapterTest'
+    chapter_id = db.Column(db.VARCHAR(36), primary_key=True)
+    story_id = db.Column(db.VARCHAR(36))
+    chapter_num = db.Column(db.Integer)
+    chapter_name = db.Column(db.String(128))
+    chapter_url = db.Column(db.String(128))
+    chapter_text = db.Column(db.UnicodeText())
+    chapter_order = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<storyChapterTest %r>' % self.chapter_name
+
+
 
 db.create_all()
 db.session.commit()

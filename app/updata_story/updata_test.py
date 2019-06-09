@@ -95,7 +95,7 @@ url = "http://123.207.35.36:5010/get/"
 
 
 def __load_one_chapter(chapter_list,key,num):
-    check_num = 5
+    check_num = 2
     # print key.string
     chapter_name = key.string
     chapter_url = key.find('a')['href']
@@ -105,22 +105,23 @@ def __load_one_chapter(chapter_list,key,num):
     if check_chapter_todb(story_id,chapter_num) :
         print "have"
         return
-    while check_num!=0:
-        try:
-            story_spider_for_biequge('http://www.biquge.lu/'+key.find('a')['href'],[story_id,chapter_num,chapter_name,chapter_url,chapter_list.index(key)+1])
-            num += 1
-            print num
-            check_num = 0
-        except Exception ,e:
-            check_num = check_num - 1
-            print e
-            print chapter_num
+
+    story_spider_for_biequge('http://www.biquge.lu/'+key.find('a')['href'],[story_id,chapter_num,chapter_name,chapter_url,chapter_list.index(key)+1])
+    # while check_num!=0:
+    #     try:
+    #         story_spider_for_biequge('http://www.biquge.lu/'+key.find('a')['href'],[story_id,chapter_num,chapter_name,chapter_url,chapter_list.index(key)+1])
+    #         num += 1
+    #         print num
+    #         check_num = 0
+    #     except Exception ,e:
+    #         check_num = check_num - 1
+    #         print e
+    #         print chapter_num
 
     check_num = 5
 
 
-# list = Story.query.filter_by(story_id = '43597')
-list = Story.query.filter_by()
+list = Story.query.filter_by(story_id = '43597')
 num = 0
 s = requests.Session()
 s.keep_alive = False
@@ -145,10 +146,8 @@ for key in list:
 
     chapter_list_indb = db.session.query(StoryChapter.chapter_name,StoryChapter.chapter_num).filter(StoryChapter.story_id==key.story_id).order_by(StoryChapter.chapter_num).all()
     chapter_id_list = []
-    chapter_name_list = []
     for key in chapter_list_indb:
         chapter_id_list.append(str(key[1]))
-        chapter_name_list.append(str(key[0]))
 
     wrong_list = []
 
@@ -156,35 +155,19 @@ for key in list:
     for key in chapter_list:
         if key.find('a')['href'].split('/')[-1].replace('.html',"") in chapter_id_list:
             pass
-        if key.find('a').string in chapter_name_list:
-            pass
         else:
             # wrong_list.append(key.find('a').get_text())
             wrong_list.append(key)
 
+    __load_one_chapter(wrong_list,wrong_list[0],1)
+    break
 
-    for key in wrong_list:
-        if len(threading.enumerate()) >= 3:
-            time.sleep(0.5 + len(threading.enumerate())*0.1)
-
-        download_thread = threading.Thread(target=__load_one_chapter,
-                                           args=(chapter_list,key,num))
-        download_threads.append(download_thread)
-        download_thread.start()
-    [ t.join() for t in download_threads ]
-
-    # for key in chapter_list[len(lists):]:
-    #
+    # for key in wrong_list:
     #     if len(threading.enumerate()) >= 3:
     #         time.sleep(0.5 + len(threading.enumerate())*0.1)
     #
     #     download_thread = threading.Thread(target=__load_one_chapter,
-    #                                        args=(chapter_list,key,num))
+    #                                        args=(wrong_list,key,num))
     #     download_threads.append(download_thread)
     #     download_thread.start()
     # [ t.join() for t in download_threads ]
-
-
-
-# db.create_all()
-# db.session.commit()
