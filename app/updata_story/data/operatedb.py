@@ -5,7 +5,6 @@ import os
 import re
 import uuid
 import platform
-
 reload(sys)
 sys.setdefaultencoding('utf-8')
 dataname = "story"
@@ -113,3 +112,4 @@ def check_story_todb(story_id):
     if result==long(0):
         return False
     return True
+

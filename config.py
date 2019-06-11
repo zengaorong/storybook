@@ -15,6 +15,7 @@ class Config:
 
     FLASKY_ADMIN = '1904959670@qq.com'
     UPLOADED_PHOTOS_DEST = os.getcwd() + '/app/static/upload'
+    SETING_CONFIG_DEST = os.getcwd() + '/app/story/data'
     # UPLOADED_PHOTOS_DEST = os.environ.get(os.getcwd(), 'app/static/uploads')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     FLASKY_POSTS_PER_PAGE = 10

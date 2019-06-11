@@ -57,14 +57,15 @@
 		</div><div class="clear"></div>
 <div class="wrap">
 	<div class="hot">
-		<div class="l bd"><div class="item"><div class="p10"><div class="image"><a href="http://www.biquge.lu/book/8/" target="_blank"><img src="./笔趣阁_无弹窗书友最值得收藏的网络小说阅读网_files/8s.jpg" alt="圣墟"></a></div><dl><dt><span>辰东</span><a href="http://www.biquge.lu/book/8/" target="_blank">圣墟</a></dt><dd>    在破败中崛起，在寂灭中复苏。
-			沧海成尘，雷电枯竭，那一缕幽雾又一次临近大地，世间的枷锁被打开了，一个全新的世界就此揭开神秘的一角……
-			......</dd></dl></div></div><div class="item"><div class="p10"><div class="image"><a href="http://www.biquge.lu/book/15676/" target="_blank"><img src="./笔趣阁_无弹窗书友最值得收藏的网络小说阅读网_files/15676s.jpg" alt="飞剑问道"></a></div><dl><dt><span>我吃西红柿</span><a href="http://www.biquge.lu/book/15676/" target="_blank">飞剑问道</a></dt><dd>    在这个世界，有狐仙、河神、水怪、大妖，也有求长生的修行者。
-			修行者们，
-			开法眼，可看妖魔鬼怪。
-			炼一口飞剑，可千里杀敌。
-			......</dd></dl></div></div><div class="item"><div class="p10"><div class="image"><a href="http://www.biquge.lu/book/16364/" target="_blank"><img src="./笔趣阁_无弹窗书友最值得收藏的网络小说阅读网_files/16364s.jpg" alt="元尊"></a></div><dl><dt><span>天蚕土豆</span><a href="http://www.biquge.lu/book/16364/" target="_blank">元尊</a></dt><dd>    吾有一口玄黄气，可吞天地日月星。<p></p>
-			......</dd></dl></div></div><div class="item"><div class="p10"><div class="image"><a href="http://www.biquge.lu/book/3215/" target="_blank"><img src="./笔趣阁_无弹窗书友最值得收藏的网络小说阅读网_files/3215s.jpg" alt="凡人修仙之仙界篇"></a></div><dl><dt><span>忘语</span><a href="http://www.biquge.lu/book/3215/" target="_blank">凡人修仙之仙界篇</a></dt><dd>    凡人修仙，风云再起　　时空穿梭，轮回逆转　　金仙太乙，大罗道祖　　三千大道，法则至尊　　《凡人修仙传》仙界篇，一个韩立叱咤仙界的故事，一个凡人小子修......</dd></dl></div></div></div>
+		<div class="l bd">
+				{% for my_add_story in my_add_story_list %}
+			<div class="item"><div class="p10"><div class="image"><a href=".{{my_add_story.story_url}}" target="_blank"><img src="./笔趣阁_无弹窗书友最值得收藏的网络小说阅读网_files/8s.jpg" alt="圣墟"></a></div><dl><dt><span>{{my_add_story.author}}</span><a href=".{{my_add_story.story_url}}" target="_blank">{{my_add_story.story_name}}</a></dt><dd>    在破败中崛起，在寂灭中复苏。
+				沧海成尘，雷电枯竭，那一缕幽雾又一次临近大地，世间的枷锁被打开了，一个全新的世界就此揭开神秘的一角……
+				......</dd></dl></div></div>
+				{% endfor %}
+
+
+			</div>
 		<div class="r bd">
 			<h2>强力推荐</h2>
 			<ul class="lis">

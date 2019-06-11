@@ -10,6 +10,7 @@ from app.leotool.bs64pic.pic_to_bs64 import get_picbase64
 from ..models import StoryChapter,Story
 from .form import fromtest
 from app.leotool.file_date_read import getDate
+import ConfigParser
 import sys
 
 reload(sys)
@@ -142,4 +143,22 @@ def index():
         print key
         tuijian_list.append(Story.query.filter_by(story_name=key).first())
 
-    return render_template('storybook/story_index.html',story_updatas=story_updatas,tuijian_list=tuijian_list)
+
+    # cf = ConfigParser.ConfigParser()
+    # cf.read(os.path.join(current_app.config['SETING_CONFIG_DEST'],"seting.config"))
+    # author = cf.get("showstory_1", "author")
+    # story = cf.get("showstory_1", "story")
+    # my_add_story =  Story.query.filter_by(author=author,story_name=story).first()
+    # my_add_story.story_url = my_add_story.story_url[:-1]
+
+    my_add_story_list = []
+    cf = ConfigParser.ConfigParser()
+    cf.read(os.path.join(current_app.config['SETING_CONFIG_DEST'],"seting.config"))
+    for section in cf.sections():
+        author = cf.get(section, "author")
+        story = cf.get(section, "story")
+        my_add_story =  Story.query.filter_by(author=author,story_name=story).first()
+        my_add_story.story_url = my_add_story.story_url[:-1]
+        my_add_story_list.append(my_add_story)
+
+    return render_template('storybook/story_index.html',story_updatas=story_updatas,tuijian_list=tuijian_list,my_add_story_list=my_add_story_list)

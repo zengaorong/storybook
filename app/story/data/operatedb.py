@@ -109,3 +109,25 @@ def check_story_todb(story_id):
     if result==long(0):
         return False
     return True
+
+def check_story_by_author_and_story(ahtor_name,story_name):
+    conn= MySQLdb.connect(
+        host= '120.79.217.238',
+        port = 3306,
+        user='root',
+        passwd='7monthdleo',
+        db = dataname,
+        charset='utf8'
+    )
+    cur = conn.cursor()
+    # sqli =  "select * from story where author='作者：烽火戏诸侯' and story_name='剑来'"
+    sqli =  "select * from story where author=%s and story_name=%s"
+    print repr("作者：烽火戏诸侯")
+    print repr(ahtor_name)
+    result = cur.execute(sqli,[ahtor_name,story_name])
+    # result = cur.execute(sqli)
+    print result
+    conn.close()
+    if result==long(0):
+        return False
+    return True
