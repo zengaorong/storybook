@@ -6,6 +6,7 @@ import time
 from bs4 import BeautifulSoup
 from data.operatedb import check_chapter_todb
 from storys import story_spider_for_biequge
+from datetime import datetime
 import threading
 import sys
 reload(sys)
@@ -39,18 +40,21 @@ class Story(db.Model):
     story_type = db.Column(db.Integer)
     chapter_num = db.Column(db.Integer)
     image_data = db.Column(db.Text())
+    updata_time = db.Column(db.DATETIME)
 
     def __repr__(self):
         return '<Story %r>' % self.story_name
 
-class add_Story_list(db.Model):
-    __tablename__ = 'story'
+class Story_for_update(db.Model):
+    __tablename__ = 'Story_for_update'
     story_id = db.Column(db.VARCHAR(36), primary_key=True)
     story_name = db.Column(db.String(128), unique=True)
     author = db.Column(db.String(128))
+    updata_time = db.Column(db.DATETIME)
 
+    #users = db.relationship('User', backref='role', lazy='dynamic')
     def __repr__(self):
-        return '<add_Story_list %r>' % self.story_id
+        return '<Story_for_update %r>' % self.story_id
 
 
 class StoryChapter(db.Model):
@@ -67,81 +71,29 @@ class StoryChapter(db.Model):
         return '<StoryChapter %r>' % self.chapter_name
 
 
-def get_IP(nums):
-    ip_list = []
-    for num in range(0,nums):
-        url = "http://123.207.35.36:5010/get/"
-        respons = requests.get(url)
-        ip_list.append(respons.text)
-    return ip_list
+def dict_to_text(data_dict):
+    outstr = ""
+    for key in data_dict:
+        outstr = outstr + str(data_dict[key][0]) + '\t' + str(data_dict[key][1]) + '\t' + str(data_dict[key][2]) + '\n'
+    return outstr
 
-
-ip_list = [u'101.251.216.103:8080', u'218.60.8.98:3129', u'61.128.208.94:3128', u'222.74.61.98:53281', u'123.138.89.132:9999']
-
-
-proxies = {
-    'https': 'https://182.61.170.45:3128',
-}
-
-url = "http://123.207.35.36:5010/get/"
-# url_shuhui = 'http://prod-api.ishuhui.com/ver/ea149533/setting/page?page=/&.json'
-# url_biqu = "http://www.biquge.lu/book/16364/"
-
-
-def __load_one_chapter(chapter_list,key,num):
-    check_num = 5
-    # print key.string
-    chapter_name = key.string
-    chapter_url = key.find('a')['href']
-    story_id = key.find('a')['href'].split('/')[-2]
-    chapter_num = key.find('a')['href'].split('/')[-1].replace('.html',"")
-    #http://www.biquge.lu/book/39651/19467857.html
-    if check_chapter_todb(story_id,chapter_num) :
-        print "have"
-        return
-    while check_num!=0:
-        try:
-            story_spider_for_biequge('http://www.biquge.lu/'+key.find('a')['href'],[story_id,chapter_num,chapter_name,chapter_url,chapter_list.index(key)+1])
-            num += 1
-            print num
-            check_num = 0
-        except Exception ,e:
-            check_num = check_num - 1
-            print e
-            print chapter_num
-
-    check_num = 5
-
-
-# list = Story.query.filter_by(story_id = '43597')
 list = Story.query.filter_by()
-num = 0
 s = requests.Session()
 s.keep_alive = False
+updata_time_id_dict = {}
 for key in list:
-    lists = db.session.query(StoryChapter.chapter_name,StoryChapter.chapter_url).filter(StoryChapter.story_id==key.story_id).order_by(StoryChapter.chapter_num).all()
-    print len(lists)
-    if key.chapter_num==0 or key.chapter_num==None or key.chapter_num=="":
-        key.chapter_num = len(lists)
-        db.session.add(key)
-        db.session.commit()
-
     url = "http://www.biquge.lu/book/%s/"%key.story_id
     respons = s.get(url)
     respons.encoding='gbk'
     soup = BeautifulSoup(respons.text.replace('\r','\n'),'html.parser')
     chapter_soup = soup.find('div',{'class','listmain'})
     chapter_list = chapter_soup.find_all('dd')
+    updata_time = soup.find_all('meta')
 
-    check_num = 5
-    chapter_list = chapter_list[6:]
-    download_threads = []
-
-    chapter_list_indb = db.session.query(StoryChapter.chapter_name,StoryChapter.chapter_num).filter(StoryChapter.story_id==key.story_id).order_by(StoryChapter.chapter_num).all()
-    chapter_id_list = []
-    chapter_name_list = []
+    if key.updata_time!= datetime.strptime(updata_time[-3]['content'], "%Y-%m-%d %H:%M:%S") or key.updata_time==0 or key.updata_time==None or key.updata_time=="":
+        updata_time_id_dict[key.story_id] = [key.story_id,key.story_name,key.author]
 
 
-
-db.create_all()
-db.session.commit()
+file = open("download_id_list.txt",'w')
+file.writelines(dict_to_text(updata_time_id_dict))
+file.close()

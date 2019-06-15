@@ -6,8 +6,10 @@ import time
 from bs4 import BeautifulSoup
 from data.operatedb import check_chapter_todb
 from storys import story_spider_for_biequge
+from datetime import datetime
 import threading
 import sys
+import os
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -39,6 +41,7 @@ class Story(db.Model):
     story_type = db.Column(db.Integer)
     chapter_num = db.Column(db.Integer)
     image_data = db.Column(db.Text())
+    updata_time = db.Column(db.DATETIME)
 
     def __repr__(self):
         return '<Story %r>' % self.story_name
@@ -119,72 +122,102 @@ def __load_one_chapter(chapter_list,key,num):
     check_num = 5
 
 
-# list = Story.query.filter_by(story_id = '43597')
-list = Story.query.filter_by()
-num = 0
-s = requests.Session()
-s.keep_alive = False
-for key in list:
-    lists = db.session.query(StoryChapter.chapter_name,StoryChapter.chapter_url).filter(StoryChapter.story_id==key.story_id).order_by(StoryChapter.chapter_num).all()
-    print len(lists)
-    if key.chapter_num==0 or key.chapter_num==None or key.chapter_num=="":
-        key.chapter_num = len(lists)
-        db.session.add(key)
-        db.session.commit()
+def getdown_id():
+    path_file = "download_id_list.txt"
+    download_id_list = []
+    if os.path.exists(path_file):
+        file = open(path_file,'r')
+        for line in file.readlines():
+            # 读取文档内容，循环存入漫画id
+            download_id_list.append(line.strip().split('\t')[0])
 
-    url = "http://www.biquge.lu/book/%s/"%key.story_id
-    respons = s.get(url)
-    respons.encoding='gbk'
-    soup = BeautifulSoup(respons.text.replace('\r','\n'),'html.parser')
-    chapter_soup = soup.find('div',{'class','listmain'})
-    chapter_list = chapter_soup.find_all('dd')
+    else:
+        file = open(path_file,'w')
+        file.close()
+    return download_id_list
 
-    check_num = 5
-    chapter_list = chapter_list[6:]
-    download_threads = []
+def dict_to_text(data_dict):
+    outstr = ""
+    for key in data_dict:
+        outstr = outstr + str(data_dict[key][0]) + '\t' + str(data_dict[key][1]) + '\t' + str(data_dict[key][2]) + '\n'
+    return outstr
 
-    chapter_list_indb = db.session.query(StoryChapter.chapter_name,StoryChapter.chapter_num).filter(StoryChapter.story_id==key.story_id).order_by(StoryChapter.chapter_num).all()
-    chapter_id_list = []
-    chapter_name_list = []
-    for key in chapter_list_indb:
-        chapter_id_list.append(str(key[1]))
-        chapter_name_list.append(str(key[0]))
+def delete_story_to_text(delete_story_id):
+    path_file = "download_id_list.txt"
+    download_id_dict = {}
+    if os.path.exists(path_file):
+        file = open(path_file,'r')
+        for line in file.readlines():
+            # 读取文档内容，循环存入漫画id
+            if line.strip().split('\t')[0] == delete_story_id:
+                pass
+            else:
+                download_id_dict[line.strip().split('\t')[0]] = [line.strip().split('\t')[0],line.strip().split('\t')[1],line.strip().split('\t')[2]]
 
-    wrong_list = []
-
-
-    for key in chapter_list:
-        if key.find('a')['href'].split('/')[-1].replace('.html',"") in chapter_id_list:
-            pass
-        if key.find('a').string in chapter_name_list:
-            pass
-        else:
-            # wrong_list.append(key.find('a').get_text())
-            wrong_list.append(key)
+        file = open("download_id_list.txt",'w')
+        file.writelines(dict_to_text(download_id_dict))
+        file.close()
+    else:
+        file = open(path_file,'w')
+        file.close()
 
 
-    for key in wrong_list:
-        if len(threading.enumerate()) >= 3:
-            time.sleep(0.5 + len(threading.enumerate())*0.1)
-
-        download_thread = threading.Thread(target=__load_one_chapter,
-                                           args=(chapter_list,key,num))
-        download_threads.append(download_thread)
-        download_thread.start()
-    [ t.join() for t in download_threads ]
-
-    # for key in chapter_list[len(lists):]:
-    #
-    #     if len(threading.enumerate()) >= 3:
-    #         time.sleep(0.5 + len(threading.enumerate())*0.1)
-    #
-    #     download_thread = threading.Thread(target=__load_one_chapter,
-    #                                        args=(chapter_list,key,num))
-    #     download_threads.append(download_thread)
-    #     download_thread.start()
-    # [ t.join() for t in download_threads ]
+# for key in getdown_id():
+#     print key
 
 
+for updata_time_id  in getdown_id():
+    list = Story.query.filter_by(story_id = updata_time_id)
+    num = 0
+    s = requests.Session()
+    s.keep_alive = False
+    for key in list:
+        lists = db.session.query(StoryChapter.chapter_name,StoryChapter.chapter_url).filter(StoryChapter.story_id==key.story_id).order_by(StoryChapter.chapter_num).all()
+        print len(lists)
+        if key.chapter_num==0 or key.chapter_num==None or key.chapter_num=="":
+            key.chapter_num = len(lists)
+            db.session.add(key)
+            db.session.commit()
 
-db.create_all()
-db.session.commit()
+        url = "http://www.biquge.lu/book/%s/"%key.story_id
+        respons = s.get(url)
+        respons.encoding='gbk'
+        soup = BeautifulSoup(respons.text.replace('\r','\n'),'html.parser')
+        chapter_soup = soup.find('div',{'class','listmain'})
+        chapter_list = chapter_soup.find_all('dd')
+
+        check_num = 5
+        chapter_list = chapter_list[6:]
+        download_threads = []
+
+        chapter_list_indb = db.session.query(StoryChapter.chapter_name,StoryChapter.chapter_num).filter(StoryChapter.story_id==key.story_id).order_by(StoryChapter.chapter_num).all()
+        chapter_id_list = []
+        chapter_name_list = []
+        for key in chapter_list_indb:
+            chapter_id_list.append(str(key[1]))
+            chapter_name_list.append(str(key[0]))
+
+        wrong_list = []
+
+
+        for key in chapter_list:
+            if key.find('a')['href'].split('/')[-1].replace('.html',"") in chapter_id_list:
+                pass
+            if key.find('a').string in chapter_name_list:
+                pass
+            else:
+                # wrong_list.append(key.find('a').get_text())
+                wrong_list.append(key)
+
+
+        for key in wrong_list:
+            if len(threading.enumerate()) >= 3:
+                time.sleep(0.5 + len(threading.enumerate())*0.1)
+
+            download_thread = threading.Thread(target=__load_one_chapter,
+                                               args=(chapter_list,key,num))
+            download_threads.append(download_thread)
+            download_thread.start()
+        [ t.join() for t in download_threads ]
+
+    delete_story_to_text(updata_time_id)

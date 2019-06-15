@@ -28,6 +28,9 @@ class Story(db.Model):
     def __repr__(self):
         return '<Story %r>' % self.story_name
 
+
+
+
 # 考虑的问题 是否使用ssdb来处理会更好 没有一致性的排序 会使得查询时间非常长 是否隔一段时间 执行排序的操作
 #  chapter_id,story_id,chapter_num,chapter_name,chapter_url,chapter_text
 class StoryChapter(db.Model):
