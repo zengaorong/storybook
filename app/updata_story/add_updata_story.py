@@ -94,6 +94,7 @@ for key in list:
         updata_time_id_dict[key.story_id] = [key.story_id,key.story_name,key.author]
 
 
+
 file = open("download_id_list.txt",'w')
 file.writelines(dict_to_text(updata_time_id_dict))
 file.close()
