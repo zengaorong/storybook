@@ -11,5 +11,5 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-data_text = u"\\xE6\\x95\\x9E\\xE5\\xA4\\xA7".decode('gbk')
+data_text =u'\u5251\u6765'
 print data_text

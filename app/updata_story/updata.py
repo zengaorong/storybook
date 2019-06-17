@@ -185,6 +185,8 @@ for updata_time_id  in getdown_id():
         soup = BeautifulSoup(respons.text.replace('\r','\n'),'html.parser')
         chapter_soup = soup.find('div',{'class','listmain'})
         chapter_list = chapter_soup.find_all('dd')
+        updata_time = soup.find_all('meta')
+        temp_story = key
 
         check_num = 5
         chapter_list = chapter_list[6:]
@@ -221,3 +223,7 @@ for updata_time_id  in getdown_id():
         [ t.join() for t in download_threads ]
 
     delete_story_to_text(updata_time_id)
+    if temp_story.updata_time!= datetime.strptime(updata_time[-3]['content'], "%Y-%m-%d %H:%M:%S") or temp_story.updata_time==0 or temp_story.updata_time==None or key.updata_time=="":
+        temp_story.updata_time = datetime.strptime(updata_time[-3]['content'], "%Y-%m-%d %H:%M:%S")
+        db.session.add(temp_story)
+        db.session.commit()

@@ -56,7 +56,7 @@ def book(story,chapter):
         lat_chapter_url = ""
 
     story_text = storyChapter.chapter_text.replace("&amp;1t;/p&gt;","")
-    return render_template('storybook/story_base.html',chapter_name=storyChapter.chapter_name,story_data=story_text,pre_chapter_url=pre_chapter_url,lat_chapter_url=lat_chapter_url)
+    return render_template('storybook/story_base.html',chapter_name=storyChapter.chapter_name,story_data=story_text,pre_chapter_url=pre_chapter_url,lat_chapter_url=lat_chapter_url,story_id = storyChapter.story_id)
 
 # 小说章节界面
 @story.route('/book/<story>', methods=['GET', 'POST'])
