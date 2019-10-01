@@ -29,6 +29,8 @@ for key in storys_page_list:
     actor_name = key.find("a",{"class":"name"})
     story_name = key.find("a",{"target":"_blank"})
     biqu_url = "http://www.biquge.lu/s.php?ie=gbk&s=15244670192641769733&q=%s"%story_name
+    print biqu_url
+    break
     respons = temp_session.get(biqu_url)
     soup = BeautifulSoup(respons.text,"html.parser")
     # print soup

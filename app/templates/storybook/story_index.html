@@ -9,7 +9,8 @@
 <title>与“大道朝天”相关的小说_笔趣阁</title>
 <meta name="keywords" content="与“大道朝天”相关的小说,小说搜索,笔趣阁">
 <meta name="description" content="笔趣阁是广大书友最值得收藏的与“大道朝天”相关的小说阅读网，分类书库收录了当前最好看的与“大道朝天”相关的小说，免费提供高质量的2016与“大道朝天”相关的小说排行榜，是广大爱好者必备的小说阅读网。">
-<link href="{{url_for('static', filename='static/story/css/style.css') }}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="{{url_for('static',filename='static/story/css/www_v2.css')}}">
+	<link href="{{url_for('static', filename='static/story/css/style.css') }}" rel="stylesheet" type="text/css">
 
 	<style>
 		.button {
@@ -29,6 +30,10 @@
 	</style>
 
 	<script src="{{url_for('static', filename='static/jquery-3.2.1/jquery-3.2.1.js')}}"></script>
+
+	<script src="{{url_for('static',filename='static/js/layui.js')}}"></script>
+	<script src="{{url_for('static',filename='static/js/www_v2_1.js')}}"></script>
+
 </head>
 <body>
 
@@ -38,12 +43,35 @@
 		<a href="/storybook/story/index" title="首页">首页</a>
 	</div>
 	<!--<script>search();</script>-->
-	<div class="search">
-		<form >
-			<input type="hidden" name="code" value="utf-8"><input type="search" class="text" name="stname" placeholder="小说名称、作者">
-			<input type="submit" class="btn" value="搜 索">
+{#	<div class="search">#}
+		<form action="/chaxun/search" method="get" id="search_form">
+			<div class="layui-col-md5 layui-col-sm5 www-search-input-container">
+{#				<div class="search-tab-top">#}
+{#					<ul>#}
+{#						<!--<li><a href="javascript:void(0)" class="search-tab-current" data-cate="all">综合</a> </li>-->#}
+{#						<!--<li><a href="javascript:void(0)" data-cate="zz_list">作者</a> </li>-->#}
+{#						<!--<li><a href="javascript:void(0)" data-cate="title">标题</a> </li>-->#}
+{#						<!--<li><a href="javascript:void(0)" data-cate="shiju">诗句</a> </li>-->#}
+{#						<!--<li><a href="javascript:void(0)" data-cate="first">句首</a> </li>-->#}
+{#						<!--<li><a href="javascript:void(0)" data-cate="end">句尾</a> </li>-->#}
+{#					</ul>#}
+{#				</div>#}
+				<div class="www-search-input-container-input" id="search_input_container">
+					<img src="{{ url_for('static',filename = 'static/pics/web_search.png') }}" class="www-icon">
+					<input type="text" name="kw" id="search_input" placeholder="(作者+空格+关键词)查询指定作者的结果" autocomplete="off">
+					<a href="javascript:void(0)" class="www-a-icon"><img src="{{ url_for('static',filename = 'static/pics/www_close.png') }}" class="www-icon www-visibility-hidden" id="clear_input"></a>
+					<div class="result-card" style="width: 420px; display: block;">
+					</div>
+					<div class="sub-result-card" style="width: 210px; left: 420px;">
+					</div>
+				</div>
+			</div>
 		</form>
-</div>
+{#		<form >#}
+{#			<input type="hidden" name="code" value="utf-8"><input type="search" class="text" name="stname" placeholder="小说名称、作者">#}
+{#			<input type="submit" class="btn" value="搜 索">#}
+{#		</form>#}
+{#</div>#}
 
 </div>
 </div>
@@ -108,6 +136,7 @@
 	<div class="up">
 		<div class="l bd">
 			<h2> 最近更新小说列表</h2>
+			<a href="../story/story_to_excel">下载excel</a>
 			<ul>
 				{% for story_updata in story_updatas %}
 					<li><span class="s1">[科幻小说]</span><span class="s2"><a href="http://www.biquge.lu/book/49306/">{{story_updata.author}}</a></span><span class="s3"><a href="http://www.biquge.lu/book/49306/452620760.html">{{story_updata.story_last_chapter_name}}</a></span><span class="s4">{{story_updata.story_name}}</span><span class="s5">01-21</span></li>

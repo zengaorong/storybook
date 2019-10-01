@@ -20,6 +20,10 @@ https://www.biquge.lu/book/43597/19480537.html
 #小说和设置人气 作为后面几个的排序 达到人工设置 和 人气设置两个功能
 
 
+# 建立一个spider的类 比如小说 里面有单独的更新id 名称的方法 可以提供调用 也有整体更新的方法
+提供这个类的目的是方便和多个爬虫API的对接
+
+
 # 搞清楚 /etc/my.cnf  he /usr/share/mysql/Index.html 的关系
 
 1137

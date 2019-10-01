@@ -1,0 +1,299 @@
+
+.www-search-input-container-item{
+    background-color: #DDD2C4;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 13px 6px;
+    border-radius: 3px;
+    display: inline;
+}
+#search_input{
+    position: relative;
+    width: 350px;
+    border: 0;
+    font-size: inherit;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+
+.www-icon{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top:-2px;
+    vertical-align: middle;
+    padding: 4px;
+}
+.www-a-icon{
+    box-sizing: border-box;
+}
+.www-a-icon .www-icon:hover{
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+#search_result{
+    /*top:65px;*/
+    /*padding-top: 10px;*/
+    /*background-color: #CAA578;*/
+    position: fixed;
+    top:55px;
+    width: 100%;
+    z-index: 1000000;
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+
+.www-search-nav-ul{
+    list-style: none;
+}
+.search-tab{
+    border-bottom:1px solid #9e733e;
+    font-size: 16px;
+}
+.search-tab ul{
+    list-style: none;
+}
+.search-tab ul li{
+    list-style: none;
+    display: inline-block;
+}
+.search-tab ul li a{
+    color: black;
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    bottom: -1px;
+}
+.search-tab ul li .tab-current{
+    color: white;
+    border-bottom:2px solid white;
+}
+.www-search-nav-ul >li a{
+    color: white;
+    list-style: none;
+    box-sizing: border-box;
+    padding: 8px 16px;
+    display: inline-block;
+}
+.www-search-nav-ul >li{
+    display: inline-block;
+}
+.www-search-nav-ul >li .www-selected{
+    border-bottom: solid 2px white;
+}
+
+
+/*修改后的搜索框*/
+.search-tab-top{
+    height: 20px;
+    overflow: hidden;
+    line-height: 20px;
+}
+.search-tab-top ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+}
+.search-tab-top ul li a{
+    display: inline-block;
+    color:#cccccc;
+    font-size: 14px;
+    margin: 0 5px;
+    line-height: 14px;
+}
+.search-tab-top ul li .search-tab-current{
+    font-weight: bold;
+    color: white;
+}
+
+/*420 搜索框的宽度*/
+.www-search-input-container-input{
+    background-color: white;
+    box-sizing: border-box;
+    padding: 0;
+    border-radius: 3px;
+    margin-top: 5px;
+    height: 35px;!important;
+    line-height: 35px;
+    width: 800px;
+    display: block;
+}
+.search-status{
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-radius: 3px 3px 0 0;!important;
+}
+
+.result-card{
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-bottom-left-radius:3px;
+    border-bottom-right-radius:3px;
+    /*background-color:  #C39966;*/
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    border-top: 1px solid #c2c2c2;
+    padding-bottom: 3px;
+    overflow: hidden;
+    display: none;
+}
+.result-card li a{
+    padding: 2px 5px;
+    display: block;
+    color: #333;
+    font-size: 14px;
+}
+.result-card li a strong{
+    font-size: 16px;
+    margin: 0 5px;
+    color: black;
+}
+.result-card li a span{
+    float: right;
+    color: #333;
+    font-size: 14px;
+}
+.result-card li .selected{
+    background-color: #eeeeee;
+}
+.sub-result-card{
+    position: absolute;
+    height: 100px;
+    display: none;
+    overflow: hidden;
+    font-size: 14px;
+    padding: 5px;
+    background-color: #eeeeee;
+}
+.ddd-div{
+    background-color: #C39966;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 20px 0;
+    text-align: center;
+
+}
+.totop{
+    position: fixed;right: 20px;bottom: 50px;padding: 10px; z-index: 10000;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    background-color: #eeeeee;
+    line-height: 25px;
+    opacity: 1.0;
+    transition: 0.2s;
+    border-radius: 2px;
+}
+.totop:hover{
+    opacity: 1.0;
+}
+.sub-item-show{
+    border: 1px solid #9D7242;
+    max-height: 2000px;
+}
+.sub-item-hide{
+    max-height: 0px;
+    border: 0;
+}
+.sub-item{
+    padding-left: 10px;
+    transition: 0.3s;
+    overflow: hidden;
+    border-radius: 3px;
+}
+.more-chaxun-result{
+    margin:  0 8px;
+    color: black;
+}
+.more-chaxun-result i{
+    display: inline-block;
+    transition: 0.3s;
+    margin:  0 2px;
+}
+.book-chaxun-item{
+    padding: 10px;
+}
+.book-chaxun-item h4 {
+    font-size: 16px;
+    padding: 5px;
+}
+.book-chaxun-item h4 a{
+    text-decoration: underline;
+}
+.book-chaxun h3{
+    display: block;
+}
+.book-chaxun h3 a:hover{
+    color: white;
+}
+.book-chaxun h3 img{
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    transition: 0.3s;
+}
+.book-chaxun .book-chaxun-more{
+    float: right;
+}
+.book-chaxun a:hover{
+    color: white;
+}
+.book-chaxun-desc{
+    font-size: 14px;
+    color: #666;
+    padding: 3px 10px;
+}
+.highlight{
+    background-color: #FD953F;
+    font-weight: bold;
+}
+.book_filter_tip{
+    font-size: 14px;
+    padding: 5px;
+}
+.book_filter_tip a:hover{
+    color: white;
+}
+.book-search-form{
+    text-align: right;
+}
+.book-search-form input{
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 3px;
+}
+.chengyu-table{
+    width: 100%;
+}
+.chengyu-table .head{
+    color: #666;
+}
+.chengyu-table tr td{
+    text-align: left;
+    border: 1px solid #c9a47b;
+    padding: 10px;
+}
+.chengyu-rel{
+    font-size: 14px;
+    color: #333;
+    padding: 10px;
+}
+.chengyu-rel-title{
+    font-weight: bold;
+    font-size: 16px;
+}
+.chengyu-list-item h3 span{
+    margin: 0 10px;
+    font-size: 14px;
+    color: #666;
+}
+.chengyu-list-jieshi{
+    font-size: 14px;
+    color: #333;
+    padding: 10px;
+}

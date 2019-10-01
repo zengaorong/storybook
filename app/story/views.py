@@ -11,10 +11,13 @@ from ..models import StoryChapter,Story
 from .form import fromtest
 from app.leotool.file_date_read import getDate
 import ConfigParser
+import flask_excel as excel
 import sys
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
+
+
 
 # 搜索漫画
 @story.route('/search', methods=['GET', 'POST'])
@@ -57,6 +60,8 @@ def book(story,chapter):
 
     story_text = storyChapter.chapter_text.replace("&amp;1t;/p&gt;","")
     return render_template('storybook/story_base.html',chapter_name=storyChapter.chapter_name,story_data=story_text,pre_chapter_url=pre_chapter_url,lat_chapter_url=lat_chapter_url,story_id = storyChapter.story_id)
+
+
 
 # 小说章节界面
 @story.route('/book/<story>', methods=['GET', 'POST'])
@@ -162,3 +167,28 @@ def index():
         my_add_story_list.append(my_add_story)
 
     return render_template('storybook/story_index.html',story_updatas=story_updatas,tuijian_list=tuijian_list,my_add_story_list=my_add_story_list)
+
+
+
+@story.route('/story_to_excel', methods=['GET', 'POST'])
+def story_to_excel():
+    # story_list = db.session.query(Story.story_id,Story.story_url).all()
+    # column_names = ['story_id', 'story_url']
+    # # story_list = Story.query.filter_by()
+    # story_updatas = story_list
+    # flask_excel.make_response_from_query_sets(story_updatas,column_names=['id','url'],file_name='test',file_type='xlsx')
+
+    pagination = db.session.query(StoryChapter.chapter_id.label('章节'),Story.story_id.label('id'),Story.story_url.label('url')).outerjoin(Story,Story.story_id == StoryChapter.story_id ).filter(Story.story_id =='39651').paginate(
+        1, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
+        error_out=False)
+
+    # story_list = db.session.query(Story.story_id.label('id'),Story.story_url.label('url')).all()
+    column_names = ['章节','id', 'url']
+    story_list = pagination.items
+
+    return excel.make_response_from_query_sets(story_list, column_names, file_name='test',file_type='xlsx')
+
+    # return excel.make
+
+    # return excel.make_response_from_query_sets(story_list, column_names, file_name='test',file_type='xlsx')
+    return excel.make_response_from_array(story_list,"xlsx",column_names)

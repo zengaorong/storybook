@@ -3,6 +3,7 @@ import sys
 import time
 import uuid
 import requests
+
 from bs4 import BeautifulSoup
 from datetime import  datetime
 from data.operatedb import insert_chapter_todb
@@ -25,6 +26,7 @@ res_session = requests.session()
 
 def story_spider_for_biequge(url,list):
     respons = res_session.get(url,headers=head,timeout=30)
+    respons.encoding = 'gbk'
     # with open("result.html","w") as f:
     #     f.writelines(respons.text.replace('\r','\n'))
     #
