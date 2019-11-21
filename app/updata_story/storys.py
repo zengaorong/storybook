@@ -23,7 +23,6 @@ head = {
 # })
 
 res_session = requests.session()
-
 def story_spider_for_biequge(url,list):
     respons = res_session.get(url,headers=head,timeout=30)
     respons.encoding = 'gbk'
